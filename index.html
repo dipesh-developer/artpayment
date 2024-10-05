@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pamentofartistdipesh0</title>
+</head>
+<body>
+            
+            <button type="button" id="phonePayButton" onclick="continueWithPhonePay()">Continue with PhonePe</button>
+            <button type="button" id="paytmButton" onclick="continueWithPaytm()">Continue with Paytm</button>
+
+            <script>
+                function continueWithPhonePay() {
+                    // PhonePe deep linking URL with phone number
+                    const phonePeURL = 'phonepe://pay?pn=7322038344';
+
+                    // Check if the device supports deep linking
+                    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                        // Attempt to open PhonePe app with the specific phone number
+                        window.location.href = phonePeURL;
+
+                        // Fallback to Play Store or App Store if app is not installed
+                        setTimeout(function() {
+                            if (confirm("PhonePe app is not installed. Do you want to download it?")) {
+                                if (/Android/i.test(navigator.userAgent)) {
+                                    window.location.href = 'https://play.google.com/store/apps/details?id=com.phonepe.app';
+                                } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                                    window.location.href = 'https://apps.apple.com/in/app/phonepe-upi-payments-recharge/id1170055821';
+                                }
+                            }
+                        }, 1000); // Wait for 1 second before showing the prompt
+                    } else {
+                        alert("PhonePe is not supported on this device.");
+                    }
+                }
+
+                function continueWithPaytm() {
+                    // Paytm deep linking URL for phone number payment
+                    const paytmURL = 'paytmmp://pay?pa=7322038344@paytm';
+
+                    // Check if the device supports deep linking
+                    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                        // Attempt to open Paytm app
+                        window.location.href = paytmURL;
+
+                        // Fallback to Play Store or App Store if app is not installed
+                        setTimeout(function() {
+                            if (confirm("Paytm app is not installed. Do you want to download it?")) {
+                                if (/Android/i.test(navigator.userAgent)) {
+                                    window.location.href = 'https://play.google.com/store/apps/details?id=net.one97.paytm';
+                                } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                                    window.location.href = 'https://apps.apple.com/in/app/paytm-secure-upi-payments/id473941634';
+                                }
+                            }
+                        }, 1000); // Wait for 1 second before showing the prompt
+                    } else {
+                        alert("Paytm is not supported on this device.");
+                    }
+                }
+                </script>
+
+                <style>
+                    .or-separator {
+                        display: flex;
+                        align-items: center;
+                        text-align: center;
+                        margin: 20px 0;
+                    }
+                    
+                    .or-separator hr {
+                        flex: 1;
+                        border: none;
+                        border-top: 1px solid #ddd;
+                    }
+                    
+                    .or-separator span {
+                        padding: 0 10px;
+                        color: #666;
+                    }
+
+                    #phonePayButton, #paytmButton {
+                        color: white;
+                        padding: 10px;
+                        border: none;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        width: 200px; /* Set a fixed width */
+                        margin: 0 auto; /* Center the button horizontally */
+                        display: block; /* Ensure it's a block-level element */
+                        margin-bottom: 15px;
+                        transition: all 0.3s ease; /* Add transition for smooth animation */
+                        animation: pulse 2s infinite; /* Add pulse animation */
+                    }
+
+                    #phonePayButton {
+                        background-color: #5f259f;
+                    }
+
+                    #paytmButton {
+                        background-color: #00B9F1;
+                    }
+
+                    #phonePayButton:hover, #paytmButton:hover {
+                        transform: scale(1.05); /* Slightly increase size on hover */
+                    }
+
+                    #phonePayButton:hover {
+                        background-color: #4a1d7d;
+                    }
+
+                    #paytmButton:hover {
+                        background-color: #0095C4;
+                    }
+
+                    @keyframes pulse {
+                        0% {
+                            transform: scale(1);
+                        }
+                        50% {
+                            transform: scale(1.05);
+                        }
+                        100% {
+                            transform: scale(1);
+                        }
+                    }
+                </style>
+
+</body>
+</html>
